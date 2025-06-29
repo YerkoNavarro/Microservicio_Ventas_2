@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 
 
@@ -37,7 +39,6 @@ public class ventaController {
            return ResponseEntity.ok(ventaService.crearVenta(venta));
        }
 
-        
     }
    
 
@@ -78,5 +79,16 @@ public class ventaController {
         }
             
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Boolean> actualizarVenta(@PathVariable int id, @RequestBody Venta venta) {
+        if (ventaService.actualizarVenta(id, venta)) {
+            return ResponseEntity.ok(ventaService.actualizarVenta(id, venta));
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
 
 }
