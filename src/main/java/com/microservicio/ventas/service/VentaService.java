@@ -2,6 +2,8 @@ package com.microservicio.ventas.service;
 
 
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +24,7 @@ public class VentaService {
 
     public String crearVenta(Venta v){
 
-        try {
+       
             if (ventasRepository.existsByIdVenta(v.getIdVenta())) {
                 return "venta ya existente";
             } else {
@@ -32,9 +34,8 @@ public class VentaService {
             nVenta.setIdProductos(v.getIdProductos());
             ventasRepository.save(nVenta);
             return "Venta creada";
-        } catch (Exception e) {
-            return e.getMessage();
-        }
+        
+        
 
             
     }
@@ -60,6 +61,28 @@ public class VentaService {
     }
 
 
+    public Boolean actualizarVenta(int id, Venta v ){
+        try {
+                Optional<VentaEntity> optionalVenta = ventasRepository.findById(id);
+            if (optionalVenta.isPresent()) {
+                VentaEntity venta = optionalVenta.get();
+                venta.setIdVenta(v.getIdVenta());
+                venta.setIdUsuario(v.getIdUsuario());
+                venta.setIdProductos(v.getIdProductos());
+                ventasRepository.save(venta);
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+            return false;
+        }
+        
+    }
+
+
+
     @Transactional
     public boolean eliminarVenta(int idV){
         try {
@@ -83,6 +106,7 @@ public class VentaService {
 
 
 
+
     @Autowired
     RestTemplate restTemplate;
     public Factura generarFactura(int usuarioId, int ventaId){
@@ -103,10 +127,6 @@ public class VentaService {
                 
                 }
 
-                
-           
-
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -115,5 +135,12 @@ public class VentaService {
     
     
 
+   
     
+
+
+
+
+
+
 }

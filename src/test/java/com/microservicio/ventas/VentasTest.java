@@ -1,6 +1,7 @@
 package com.microservicio.ventas;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 
@@ -56,5 +57,34 @@ public class VentasTest {
         assertEquals( "venta ya existente", result);
     }
 
-    
+    @Test
+    public void actualizarVentaTest(){
+        when(ventasrepository.existsByIdVenta(venta.getIdVenta())).thenReturn(true);
+        when(ventasrepository.save(ventaEntity)).thenReturn(ventaEntity);
+        boolean result = ventaServiceMock.actualizarVenta(venta.getIdVenta(), venta);
+        assertEquals( true, result);
+    }
+
+
+    @Test
+    public void actualizarVentaNoExistenteTest(){
+        when(ventasrepository.existsByIdVenta(venta.getIdVenta())).thenReturn(false);
+        boolean result = ventaServiceMock.actualizarVenta(venta.getIdVenta(), venta);
+        assertEquals( false, result);
+    }
+
+    @Test
+    public void traerVentaTest(){
+        when(ventasrepository.findByIdVenta(venta.getIdVenta())).thenReturn(ventaEntity);
+        Venta result = ventaServiceMock.traerVenta(venta.getIdVenta());
+        assertEquals( venta, result);
+    }
+
+    @Test
+    public void eliminarVentaTest(){
+        when(ventasrepository.findByIdVenta(venta.getIdVenta())).thenReturn(ventaEntity);
+        doNothing().when(ventasrepository).deleteByIdVenta(venta.getIdVenta());
+        boolean result = ventaServiceMock.eliminarVenta(venta.getIdVenta());
+        assertEquals( true, result);
+    }
 }
