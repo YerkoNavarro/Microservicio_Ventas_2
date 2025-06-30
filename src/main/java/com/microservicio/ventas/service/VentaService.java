@@ -60,7 +60,7 @@ public class VentaService {
 
     }
 
-    //pendiente
+    //pendiente 
     public Boolean actualizarVenta(int id, Venta v ){
         try {
                 Optional<VentaEntity> optionalVenta = ventasRepository.findById(id);

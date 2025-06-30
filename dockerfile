@@ -1,7 +1,7 @@
 FROM eclipse-temurin:17-jdk AS compile
 WORKDIR /app
 COPY . .
-RUN sudo chmod +x mvnw
+RUN chmod +x mvnw
 RUN ./mvnw clean package
 
 FROM eclipse-temurin:17-jdk AS prod
