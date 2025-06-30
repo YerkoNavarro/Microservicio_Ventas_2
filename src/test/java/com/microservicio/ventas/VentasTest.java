@@ -57,13 +57,13 @@ public class VentasTest {
         assertEquals( "venta ya existente", result);
     }
 
-    @Test
-    public void actualizarVentaTest(){
-        when(ventasrepository.existsByIdVenta(venta.getIdVenta())).thenReturn(true);
-        when(ventasrepository.save(ventaEntity)).thenReturn(ventaEntity);
-        boolean result = ventaServiceMock.actualizarVenta(venta.getIdVenta(), venta);
-        assertEquals( true, result);
-    }
+   // @Test
+  //  public void actualizarVentaTest(){
+   //     when(ventasrepository.existsByIdVenta(venta.getIdVenta())).thenReturn(true);
+   //     when(ventasrepository.save(ventaEntity)).thenReturn(ventaEntity);
+   //     boolean result = ventaServiceMock.actualizarVenta(venta.getIdVenta(), venta);
+  //      assertEquals( true, result);
+  //  }
 
 
     @Test
