@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 public class VentaEntity {
     
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY) 
+    
     @Id
     private int idVenta;
 
