@@ -31,7 +31,7 @@ public class ventaController {
 
 
     @PostMapping("/")
-    ResponseEntity<String> hacerVenta(@RequestBody Venta venta){
+    ResponseEntity<String> obtenerVenta(@RequestBody Venta venta){
        if(ventaService.crearVenta(venta)!="venta creada"){
            return ResponseEntity.badRequest().body(ventaService.crearVenta(venta));
        }
