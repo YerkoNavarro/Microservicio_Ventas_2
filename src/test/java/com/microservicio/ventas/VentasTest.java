@@ -47,16 +47,16 @@ public class VentasTest {
     public void crearNuevaVentaTest(){
         when(ventasrepository.existsByIdVenta(venta.getIdVenta())).thenReturn(false);
         when(ventasrepository.save(ventaEntity)).thenReturn(ventaEntity);
-        String result = ventaServiceMock.crearVenta(venta);
-        assertEquals( "Venta creada", result);
+        Boolean result = ventaServiceMock.crearVenta(venta);
+        assertEquals( true, result);
     }
 
 
     @Test
     public void ventaExistenteTest(){
         when(ventasrepository.existsByIdVenta(venta.getIdVenta())).thenReturn(true);
-        String result = ventaServiceMock.crearVenta(venta);
-        assertEquals( "venta ya existente", result);
+        Boolean result = ventaServiceMock.crearVenta(venta);
+        assertEquals( false, result);
     }
     
     @Test
@@ -95,5 +95,5 @@ public class VentasTest {
 
 
 
-    
+
 }
