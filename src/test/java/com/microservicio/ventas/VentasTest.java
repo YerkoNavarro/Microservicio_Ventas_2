@@ -92,8 +92,13 @@ public class VentasTest {
     }
 
 
+    @Test
+    public void eliminarVentaNoExistenteTest(){
+        when(ventasrepository.findByIdVenta(venta.getIdVenta())).thenReturn(null);
+        boolean result = ventaServiceMock.eliminarVenta(venta.getIdVenta());
+        assertEquals( false, result);
+    }
 
-
-
+   
 
 }
