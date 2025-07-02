@@ -66,6 +66,10 @@ Puedes probar todos los métodos disponibles del microservicio utilizando Swagge
 
 [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
 
+###O desde:
+
+[http://23.20.91.79:8080/swagger-ui/index.html)
+
 Desde esta interfaz podrás realizar solicitudes `POST`, `GET`, `DELETE`, y visualizar la documentación generada automáticamente por Spring Boot.
 
 
