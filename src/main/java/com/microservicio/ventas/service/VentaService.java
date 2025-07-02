@@ -22,23 +22,18 @@ public class VentaService {
 
     
 
-    public String crearVenta(Venta v){
+    public Boolean crearVenta(Venta v) {
 
-       
-            if (ventasRepository.existsByIdVenta(v.getIdVenta())) {
-                return "venta ya existente";
-            } else {
-                }
-            nVenta.setIdVenta(v.getIdVenta());
-            nVenta.setIdUsuario(v.getIdUsuario());
-            nVenta.setIdProductos(v.getIdProductos());
-            ventasRepository.save(nVenta);
-            return "Venta creada";
-        
-        
-
-            
+    if (ventasRepository.existsByIdVenta(v.getIdVenta())) {
+        return false;
+    } else {
+        nVenta.setIdVenta(v.getIdVenta());
+        nVenta.setIdUsuario(v.getIdUsuario());
+        nVenta.setIdProductos(v.getIdProductos());
+        ventasRepository.save(nVenta);
+        return true;
     }
+}
 
 
     public Venta traerVenta(int idVenta){

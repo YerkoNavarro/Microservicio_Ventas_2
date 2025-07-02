@@ -7,6 +7,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -58,15 +59,14 @@ public class VentasTest {
         assertEquals( "venta ya existente", result);
     }
     
-    //pendinete test
-   // @Test
-  //  public void actualizarVentaTest(){
-   //     when(ventasrepository.existsByIdVenta(venta.getIdVenta())).thenReturn(true);
-   //     when(ventasrepository.save(ventaEntity)).thenReturn(ventaEntity);
-   //     boolean result = ventaServiceMock.actualizarVenta(venta.getIdVenta(), venta);
-  //      assertEquals( true, result);
-  //
-  //  }
+    @Test
+    public void actualizarVentaTest(){
+    when(ventasrepository.findById(venta.getIdVenta())).thenReturn(Optional.of(ventaEntity));
+    when(ventasrepository.save(ventaEntity)).thenReturn(ventaEntity);
+    boolean result = ventaServiceMock.actualizarVenta(venta.getIdVenta(), venta);
+    assertEquals( true, result);
+}
+    
 
 
     @Test
@@ -90,4 +90,10 @@ public class VentasTest {
         boolean result = ventaServiceMock.eliminarVenta(venta.getIdVenta());
         assertEquals( true, result);
     }
+
+
+
+
+
+    
 }
