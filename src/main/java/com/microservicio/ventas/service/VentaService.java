@@ -106,7 +106,7 @@ public class VentaService {
     RestTemplate restTemplate;
     public Factura generarFactura(int usuarioId, int ventaId){
         try {
-            String usuarioUrl = "http://localhost:8081/api/v1/usuario/"+usuarioId;
+            String usuarioUrl = "http://18.235.206.44:8081/api/v1/usuario/"+usuarioId;
             String usuarioData = restTemplate.getForObject(usuarioUrl, String.class);
             VentaEntity  v = ventasRepository.findByIdVenta(ventaId);
                 if (v != null) {
